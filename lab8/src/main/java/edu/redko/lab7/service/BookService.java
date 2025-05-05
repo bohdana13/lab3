@@ -29,8 +29,8 @@ public class BookService {
     private final BookRepository bookRepository;
 
     private List<Book> books = new ArrayList<>(
-            Arrays.asList(new Book("1","namwe","00001","description1"),
-                    new Book("2","namwe2","00002","description2"),
+            Arrays.asList(new Book("name","00001","description1"),
+                    new Book("2","name2","00002","description2"),
             new Book("3","namwe3","00003","description3"))
     );
 
@@ -52,7 +52,7 @@ public class BookService {
         return bookRepository.save(book);
     }
     public Book create(BookCreateRequest request) {
-        Book book = mapToItem(request);
+        Book book = mapToBook(request);
         book.setCreateDate(LocalDateTime.now());
         book.setUpdateDate(new ArrayList<LocalDateTime>());
         return bookRepository.save(book);
@@ -65,7 +65,7 @@ public class BookService {
     public void delById(String id) {
          bookRepository.deleteById(id);
     }
-    private Book mapToItem(BookCreateRequest request) {
+    private Book mapToBook(BookCreateRequest request) {
         Book book = new Book(request.name(), request.code(), request.description());
         return book;
     }

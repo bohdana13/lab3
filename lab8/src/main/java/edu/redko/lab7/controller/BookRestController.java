@@ -1,6 +1,8 @@
 package edu.redko.lab7.controller;
 
 import edu.redko.lab7.model.Book;
+import edu.redko.lab7.request.BookCreateRequest;
+import edu.redko.lab7.request.BookUpdateRequest;
 import edu.redko.lab7.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -35,10 +37,19 @@ public class BookRestController {
     public Book insert(@RequestBody Book book) {
         return bookService.create(book);
     }
-
+    //============== request =====================
+    @PostMapping("/dto")
+    public Book insert(@RequestBody BookCreateRequest request) {
+        return bookService.create(request);
+    }
     @PutMapping
     public Book edit(@RequestBody Book book) {
         return bookService.update(book);
+    }
+    //============== request =====================
+    @PutMapping("/dto")
+    public Book edit(@RequestBody BookUpdateRequest request) {
+        return bookService.update(request);
     }
 
     @DeleteMapping("{id}")

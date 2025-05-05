@@ -23,11 +23,6 @@ import java.util.Objects;
 @Builder
 @ToString
 @Document
-
-
-
-
-
 public class Book {
 
     @Id
@@ -37,6 +32,14 @@ public class Book {
     private String description;
     private LocalDateTime createDate;
     private List<LocalDateTime> updateDate;
+
+
+    public Book(String name, String code, String description) {
+
+        this.name=name;
+        this.code=code;
+        this.description=description;
+    }
 
     public Book(String id, String name, String code, String description) {
         this.id = id;
@@ -49,8 +52,8 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Book item = (Book) o;
-        return getId().equals(item.getId());
+        Book book = (Book) o;
+        return getId().equals(book.getId());
     }
 
     @Override
